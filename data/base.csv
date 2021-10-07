@@ -1,12 +1,12 @@
-﻿unit,uname,c_ratio,c_logbase,c_offset,isCore,latex_string,dimension
-m,metre,1,0,0,TRUE,$m$',length
-kg,kilogram,1,0,0,TRUE,$kg$',mass
-s,second,1,0,0,TRUE,$s$',time
-A,ampere,1,0,0,TRUE,$A$',electric current
-k,kelvin,1,0,0,TRUE,$kg$',thermodynamic temperature
-mol,mole,1,0,0,TRUE,$mol$',amount of substance
-cd,candela,1,0,0,TRUE,$cd$',luminous intensity
-rad,radian,1,0,0,TRUE,$rad$',plane angle
-sr,steradian,1,0,0,TRUE,$sr$',solid angle
-kg/kg,kg per kg,1,0,0,TRUE,$\frac{kg}{kg}$',mass fraction composition
-m3/m3,m3 per m3,1,0,0,TRUE,$\frac{m^3}{m^3}$',volume fraction composition
+unit,uname,prefix,c_ratio,c_logbase,c_offset,isCore,latex_string,dimension_type
+m,metre,,1,0,0,TRUE,$m$',length
+kg,kilogram,,1,0,0,TRUE,$kg$',mass
+s,second,,1,0,0,TRUE,$s$',time
+A,ampere,,1,0,0,TRUE,$A$',electric current
+k,kelvin,,1,0,0,TRUE,$kg$',thermodynamic temperature
+mol,mole,,1,0,0,TRUE,$mol$',amount of substance
+cd,candela,,1,0,0,TRUE,$cd$',luminous intensity
+rad,radian,,1,0,0,TRUE,$rad$',plane angle
+sr,steradian,,1,0,0,TRUE,$sr$',solid angle
+kg/kg,kg per kg,,1,0,0,TRUE,$\frac{kg}{kg}$',mass fraction composition
+m3/m3,m3 per m3,,1,0,0,TRUE,$\frac{m^3}{m^3}$',volume fraction composition

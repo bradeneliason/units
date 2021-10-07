@@ -2,6 +2,7 @@ from typedb.client import *
 from loguru import logger
 from csv import DictReader
 
+# TODO: rewrite this for version 2.0
 # Blending TypeQL, and one layer of data
 # import form for each data object
 class TypeQL_Data_Slice:

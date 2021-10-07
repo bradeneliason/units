@@ -1,4 +1,4 @@
-ï»¿dimension,dim-t,dim-l,dim-m,dim-i,dim-k,dim-n,dim-j,dim-r
+dimension_type,dim-t,dim-l,dim-m,dim-i,dim-k,dim-n,dim-j,dim-r
 time,1,0,0,0,0,0,0,0
 length,0,1,0,0,0,0,0,0
 mass,0,0,1,0,0,0,0,0
@@ -17,7 +17,7 @@ wave number,0,-1,0,0,0,0,0,0
 mass density,0,-3,1,0,0,0,0,0
 specific volume,0,3,-1,0,0,0,0,0
 current density,0,-2,0,1,0,0,0,0
-magnetic field strengthÂ Â ,0,-1,0,1,0,0,0,0
+magnetic field strength  ,0,-1,0,1,0,0,0,0
 amount-of-substance concentration,0,-3,0,0,0,1,0,0
 luminance,0,-2,0,0,0,0,1,0
 frequency,-1,0,0,0,0,0,0,0
@@ -40,7 +40,7 @@ illuminance,0,-2,0,0,0,0,1,0
 activity (of a radionuclide),-1,0,0,0,0,0,0,0
 absorbed dose,-2,2,0,0,0,0,0,0
 specific energy (imparted),-2,2,0,0,0,0,0,0
-dose equivalentÂ (d),-2,2,0,0,0,0,0,0
+dose equivalent (d),-2,2,0,0,0,0,0,0
 catalytic activity,-1,0,0,0,0,1,0,0
 dynamic viscosity,-1,-1,1,0,0,0,0,0
 moment of force,-2,2,1,0,0,0,0,0
@@ -64,7 +64,7 @@ permeability,-2,1,1,-2,0,0,0,0
 molar energy,-2,2,1,0,0,-1,0,0
 molar heat capacity,-2,2,1,0,1,-1,0,0
 molar entropy,-2,2,1,0,1,-1,0,0
-exposure (x andÂ gammaÂ rays),1,0,-1,1,0,0,0,0
+exposure (x and gamma rays),1,0,-1,1,0,0,0,0
 absorbed dose rate,-3,2,0,0,0,0,0,0
 radiant intensity,-3,2,1,0,0,0,0,-1
 radiance,-3,0,1,0,0,0,0,-1

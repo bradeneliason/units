@@ -1,9 +1,9 @@
-﻿unit,uname,c_ratio,c_logbase,c_offset,isCore,latex_string,dimension,core
-mm,millimetre,0.001,0,0,FALSE,$mm$',length,m
-cm,centimetre,0.01,0,0,FALSE,$cm$',length,m
-km,kilometre,1000,0,0,FALSE,$km$',length,m
-nm,nanometre,0.000000001,0,0,FALSE,$nm$',length,m
-pm,picometre,0.000000000001,0,0,FALSE,$pm$',length,m
-micron,micrometre,0.000001,0,0,FALSE,$\mu m$',length,m
-gm,gram,0.001,0,0,FALSE,$gm$',mass,kg
-t,tonne,1000,0,0,FALSE,$t$',mass,kg
+unit,uname,prefix,c_ratio,c_logbase,c_offset,isCore,latex_string,dimension_type,core
+mm,millimetre,m,0.001,0,0,FALSE,$mm$',length,m
+cm,centimetre,c,0.01,0,0,FALSE,$cm$',length,m
+km,kilometre,k,1000,0,0,FALSE,$km$',length,m
+nm,nanometre,n,0.000000001,0,0,FALSE,$nm$',length,m
+pm,picometre,p,0.000000000001,0,0,FALSE,$pm$',length,m
+micron,micrometre,?,0.000001,0,0,FALSE,$\mu m$',length,m
+gm,gram,,0.001,0,0,FALSE,$gm$',mass,kg
+t,tonne,,1000,0,0,FALSE,$t$',mass,kg

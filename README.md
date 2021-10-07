@@ -17,12 +17,12 @@ Then, on import one just uses the simple syntax
 
 ## How its built
 Units are of different types:
-- core units are the ones all others break down to used in dimensional analysis, but also including non-SI dimensions like radians, composition, currency, bits, threads etc.
-- derived units are those created out of the core ones through combination of core units, without any scaling, and represent the base means of describing that quantity kind
-- scaled units are ones created out of core or derived through scaling, and they link back to their base for conversion purposes (implemented as a rule)
+- base units are units with a single dimension. They include SI base units plus any other reference value used as dimension (radians, currency, bits, threads etc.) 
+- core units are combinations of base units with multiple dimensions (or inverse dimension like 1/Time) without any scaling factors.
+- scaled units are ones created out of base or core through scaling, and they link back to their core unit for conversion purposes (implemented as a rule)
 - imperial units are just a form of scaling
 
-The unit is also connected to the dimensions, which define that measure. These dimensions also have the base unit name, attached to them. In addition to the usual SI dimensions (time, length, mass, current, temperature, moles, luminosity), there are two extra ones added for non-dimensional measures (radians, composition). The non-dimensional composition measures also connect to the unit they are compared on, for example m3/m3 has acomposition dimension of 1, and a length dimension of 3.
+The unit is also connected to the dimensions, which define that measure. These dimensions also have the base unit name, attached to them. In addition to the usual SI dimensions (time, length, mass, current, temperature, moles, luminosity), radians is a provided as a base unit for plane angles. Other non-dimensional quantities are provided as a dimension type with zero values for all dimension components. 
 
 Non-base units, like "in2", are automatically connected to their base unit, "m2", so that conversions can be set up. At the moment, conversions are not implemented, as we are waiting for calculations before implementing them.
 

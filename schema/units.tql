@@ -14,7 +14,7 @@ define
     dim_r sub attribute, value long;    # base unit: rad, for radian angles
     # Add in application specific dimensions
 
-    dimension sub attribute, value string,
+    dimension_type sub attribute, value string,
         owns dim_t,
         owns dim_l,
         owns dim_m,
@@ -35,16 +35,23 @@ define
     c_offset sub attribute, value double;
 
     # Units
-    uname sub attribute, value string;       # eg, "centimeter"
-    isCore sub attribute, value boolean; #boolean of is unit a core?
+    prefix_name sub attribute string;
+    power_ten sub attribute long;
+    prefix sub attribute, value string,
+        owns prefix_name,
+        owns power_ten;
+    
+    uname sub attribute, value string;   # eg, "centimeter"
+    isCore sub attribute, value boolean; # boolean of is unit a core?
     latex_string sub attribute, value string;   # latex string of unit
 
     unit sub attribute, value string,
         owns uname,
-        owns isCore
+        owns prefix,
+        owns isCore,
         owns latex_string,
         owns c_ratio,
-        owns dimension,
+        owns dimension_type,
         plays core_converstion:core,
         plays core_converstion:scaled;
 
@@ -63,3 +70,7 @@ define
     core_converstion sub relation,
         relates core,
         relates scaled;
+
+    # finally for the measured quantity
+    measure sub attribute, value double,
+        owns unit; # Note qkinds not imported 
