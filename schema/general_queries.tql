@@ -6,6 +6,7 @@ match
 match
     $unit isa unit; $unit "m";
             has uname $uname,
+            has prefix $prefix,
             has c_ratio $c_ratio, 
             has isCore $isCore,
             has latex_string $latex_string,
