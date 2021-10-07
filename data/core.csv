@@ -1,11 +1,55 @@
-unit,uname,utype,ctype,c_first,c_second,isBase,latex_string,description,dim-t,dim-l,dim-m,dim-i,dim-k,dim-n,dim-j,dim-r,dim-c
-m,metre,si,simple,1,0,TRUE,$m$',length,0,1,0,0,0,0,0,0,0
-kg,kilogram,si,simple,1,0,TRUE,$kg$',mass,0,0,1,0,0,0,0,0,0
-s,second,si,simple,1,0,TRUE,$s$',time,1,0,0,0,0,0,0,0,0
-A,ampere,si,simple,1,0,TRUE,$A$',electric current,0,0,0,1,0,0,0,0,0
-k,kelvin,si,simple,1,0,TRUE,$kg$',thermodynamic temperature,0,0,0,0,1,0,0,0,0
-mol,mole,si,simple,1,0,TRUE,$mol$',amount of substance,0,0,0,0,0,1,0,0,0
-cd,candela,si,simple,1,0,TRUE,$cd$',luminous intensity,0,0,0,0,0,0,1,0,0
-rad,radian,si,nondim,1,0,TRUE,$rad$',plane angle,0,0,0,0,0,0,0,1,0
-kg/kg,kg per kg,si,nondim,1,0,TRUE,$\frac{kg}{kg}$',mass fraction composition,0,0,0,0,0,0,0,0,1
-m3/m3,m3 per m3,si,nondim,1,0,TRUE,$\frac{m^3}{m^3}$',volume fraction composition,0,0,0,0,0,0,0,0,1
+unit,uname,utype,ctype,c_first,c_second,isCore,latex_string,description
+m2,square meter,si,simple,1.00,0,TRUE,$m^2$',area
+m3,cubic meter,si,simple,1.00,0,TRUE,$m^3$',volume
+m/s,meter per second,si,simple,1.00,0,TRUE,$\frac{m}{s}$',"speed, velocity"
+m/s2,meter per second squared  ,si,simple,1.00,0,TRUE,$\frac{m}{s^2}$',acceleration
+m-1,reciprocal meter,si,simple,1.00,0,TRUE,$m^-1$',wave number
+kg/m3,kilogram per cubic meter,si,simple,1.00,0,TRUE,$\frac{kg}{m^3}$',mass density
+m3/kg,cubic meter per kilogram,si,simple,1.00,0,TRUE,$\frac{m^3}{kg}$',specific volume
+A/m2,ampere per square meter,si,simple,1.00,0,TRUE,$\frac{A}{m^2}$',current density
+A/m,ampere per meter,si,simple,1.00,0,TRUE,$\frac{A}{m}$',magnetic field strength  
+mol/m3,mole per cubic meter,si,simple,1.00,0,TRUE,$\frac{mol}{m^3}$',amount-of-substance concentration
+cd/m2,candela per square meter,si,simple,1.00,0,TRUE,$\frac{cd}{m^2}$',luminance
+Hz,hertz,si,simple,1.00,0,TRUE,$Hz$',frequency
+N,newton,si,simple,1.00,0,TRUE,$N$',force
+Pa,pascal,si,simple,1.00,0,TRUE,$Pa$',"pressure, stress"
+J,joule,si,simple,1.00,0,TRUE,$J$',"energy, work, quantity of heat  "
+W,watt,si,simple,1.00,0,TRUE,$W$',"power, radiant flux"
+C,coulomb,si,simple,1.00,0,TRUE,$C$',"electric charge, quantity of electricity"
+V,volt,si,simple,1.00,0,TRUE,$V$',"electric potential difference,"
+F,farad,si,simple,1.00,0,TRUE,$F$',capacitance
+Omega,ohm,si,simple,1.00,0,TRUE,$\Omega$',electric resistance
+S,siemens,si,simple,1.00,0,TRUE,$S$',electric conductance
+Wb,weber,si,simple,1.00,0,TRUE,$Wb$',magnetic flux
+T,tesla,si,simple,1.00,0,TRUE,$T$',magnetic flux density
+H,henry,si,simple,1.00,0,TRUE,$H$',inductance
+lm,lumen,si,simple,1.00,0,TRUE,$lm$',luminous flux
+lx,lux,si,simple,1.00,0,TRUE,$lx$',illuminance
+Bq,becquerel,si,simple,1.00,0,TRUE,$Bq$',activity (of a radionuclide)
+Gy,gray,si,simple,1.00,0,TRUE,$Gy$',"absorbed dose, specific energy (imparted), kerma"
+Sv,sievert,si,simple,1.00,0,TRUE,$Sv$',dose equivalent (d)
+kat,katal,si,simple,1.00,0,TRUE,$kat$',catalytic activity
+Pa.s,pascal second,si,simple,1.00,0,TRUE,$Pa \cdot s$',dynamic viscosity
+N.m,newton meter,si,simple,1.00,0,TRUE,$N \cdot m$',moment of force
+N/m,newton per meter,si,simple,1.00,0,TRUE,$\frac{N}{m}$',surface tension
+rad/s,radian per second,si,simple,1.00,0,TRUE,$\frac{rad}{s}$',angular velocity
+rad/s2,radian per second squared,si,simple,1.00,0,TRUE,$\frac{rad}{s^2}$',angular acceleration
+W/m2,watt per square meter,si,simple,1.00,0,TRUE,$\frac{W}{m^2}$',"heat flux density, irradiance"
+J/K,joule per kelvin,si,simple,1.00,0,TRUE,$\frac{J}{K}$',"heat capacity, entropy"
+J/(kg.K),joule per kilogram kelvin,si,simple,1.00,0,TRUE,$\frac{J}{kg \cdot K}$',"specific heat capacity, specific entropy"
+J/kg,joule per kilogram,si,simple,1.00,0,TRUE,$\frac{J}{kg}$',specific energy
+W/(m.K),watt per meter kelvin,si,simple,1.00,0,TRUE,$\frac{W}{m \cdot K}$',thermal conductivity
+J/m3,joule per cubic meter,si,simple,1.00,0,TRUE,$\frac{J}{m^3}$',energy density
+V/m,volt per meter,si,simple,1.00,0,TRUE,$\frac{V}{M}$',electric field strength
+C/m3,coulomb per cubic meter,si,simple,1.00,0,TRUE,$\frac{C}{m^3}$',electric charge density
+C/m2,coulomb per square meter,si,simple,1.00,0,TRUE,$\frac{C}{m^2}$',electric flux density
+F/m,farad per meter,si,simple,1.00,0,TRUE,$\frac{F}{m}$',permittivity
+H/m,henry per meter,si,simple,1.00,0,TRUE,$\frac{H}{m}$',permeability
+J/mol,joule per mole,si,simple,1.00,0,TRUE,$\frac{J}{mol}$',molar energy
+J/(mol.K),joule per mole kelvin,si,simple,1.00,0,TRUE,$\frac{J}{mol \cdot K)}$',"molar entropy, molar heat capacity"
+C/kg,coulomb per kilogram,si,simple,1.00,0,TRUE,$\frac{C}{kg}$',exposure (x and gamma rays)
+Gy/s,gray per second,si,simple,1.00,0,TRUE,$\frac{Gy}{s}$',absorbed dose rate
+W/sr,watt per steradian,si,simple,1.00,0,TRUE,$\frac{W}{m^ \cdot W/sr}$',radiant intensity
+W/(m2.sr),watt per square meter steradian,si,simple,1.00,0,TRUE,$\frac{W}{m^2 \cdot sr)}$',radiance
+kat/m3,katal per cubic meter,si,simple,1.00,0,TRUE,$\frac{kat}{m^3}$',catalytic (activity) concentration
+sr,steradian,si,nondim,1,0,TRUE,$sr$',solid angle

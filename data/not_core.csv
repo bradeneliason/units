@@ -1,0 +1,3 @@
+unit,uname,utype,ctype,c_first,c_second,isCore,latex_string,description,core
+degC,degree Celsius,si,simple,1.00,273.15,FALSE,$\textdegree{}C$',Celsius temperature,k
+deg,degree Angle,si,simple,0.017453293,0,FALSE,$\textdegree{}$',degree angle,rad

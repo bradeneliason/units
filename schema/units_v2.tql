@@ -1,0 +1,28 @@
+    # Dimensions
+    dim_t sub attribute, value long;    # base unit: s,   time
+    dim_l sub attribute, value long;    # base unit: m,   length
+    dim_m sub attribute, value long;    # base unit: kg,  mass
+    dim_i sub attribute, value long;    # base unit: A,   current
+    dim_k sub attribute, value long;    # base unit: °C,  thermodynamic temp.
+    dim_n sub attribute, value long;    # base unit: mol, amount of substance
+    dim_j sub attribute, value long;    # base unit: cd,  luminous intensity
+    dim_r sub attribute, value long;    # base unit: rad, for radian angles
+    # Add in application specific dimensions
+
+    dimension sub attribute, value string,
+        owns dim_t,
+        owns dim_l,
+        owns dim_m,
+        owns dim_i,
+        owns dim_k,
+        owns dim_n,
+        owns dim_j,
+        owns dim_r;
+        # Add in application specific dimensions
+
+    # Dimensionless quantities like a Mach number or Reynolds number has values
+    # of zero for all dimesion parts but is given a name like "reynolds." This
+    # allow types of dimensionless quantities to be distinguished
+
+    
+

@@ -1,0 +1,11 @@
+unit,uname,utype,ctype,c_first,c_second,isCore,latex_string,description
+m,metre,si,simple,1,0,TRUE,$m$',length
+kg,kilogram,si,simple,1,0,TRUE,$kg$',mass
+s,second,si,simple,1,0,TRUE,$s$',time
+A,ampere,si,simple,1,0,TRUE,$A$',electric current
+k,kelvin,si,simple,1,0,TRUE,$kg$',thermodynamic temperature
+mol,mole,si,simple,1,0,TRUE,$mol$',amount of substance
+cd,candela,si,simple,1,0,TRUE,$cd$',luminous intensity
+rad,radian,si,nondim,1,0,TRUE,$rad$',plane angle
+kg/kg,kg per kg,si,nondim,1,0,TRUE,$\frac{kg}{kg}$',mass fraction composition
+m3/m3,m3 per m3,si,nondim,1,0,TRUE,$\frac{m^3}{m^3}$',volume fraction composition
