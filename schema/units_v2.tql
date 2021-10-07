@@ -18,11 +18,62 @@
         owns dim_n,
         owns dim_j,
         owns dim_r;
-        # Add in application specific dimensions
+        # Add in application-specific dimensions
 
     # Dimensionless quantities like a Mach number or Reynolds number has values
     # of zero for all dimesion parts but is given a name like "reynolds." This
     # allow types of dimensionless quantities to be distinguished
 
-    
+    # Unit Conversion
+    c_ratio sub attribute, value double;
+    c_logbase sub attribute, value double;
+    c_offset sub attribute, value double;
 
+    # Units
+    uname sub attribute, value string;       # eg, "centimeter"
+    isCore sub attribute, value boolean; #boolean of is unit a core?
+    latex_string sub attribute, value string;   # latex string of unit
+
+    unit sub attribute, value string,
+        owns uname,
+        owns isCore
+        owns latex_string,
+        owns c_ratio,
+        owns dimension,
+        plays core_converstion:core,
+        plays core_converstion:scaled;
+
+    log_unit sub unit,
+        owns c_logbase;
+
+    affine_unit sub unit,
+        owns c_offset;
+
+    # Other types of sub-units
+    # datetime_unit sub unit, ...
+    # geo_unit sub unit, ...
+
+    ## Relations ---------------------------------------------------------------
+
+    core_converstion sub relation,
+        relates core,
+        relates scaled;
+
+    # Tolerances
+    upper_tol sub attribute, value float;
+    lower_tol sub attribute, value float;
+    is_offset sub attribute, value boolean;
+    is_absolute sub attribute, value boolean;
+
+    # TODO: the tolerance attribute and measure attribute both hold nominal value right now
+    tolerance sub attribute, value double, # nominal value
+        owns upper_tol,     # Upper value of tolernace
+        owns lower_tol,     # Lower value of tolernace
+        owns is_offset,     # true: tols are added to nominal; false: tols are the limits of size
+        owns is_absolute;   # ture: tols have same units as nominal; false tols are scaling factors of nominal
+    
+    # finally for the measured quantity
+    measure sub attribute, value double,
+        owns unit, # Note qkinds not imported
+        # owns conditions, conditions of measurement could be implemented by application
+        owns tolerance;

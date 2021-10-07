@@ -1,6 +1,6 @@
-unit,uname,utype,ctype,c_first,c_second,isCore,latex_string,description,core
-in,inch,imperial,simple,39.370,0,FALSE,$in$',"length - imperial, inch",m
-ft,foot,imperial,simple,3.280839895,1,FALSE,$ft$',"length - imperial, foot",m
-mile,foot,imperial,simple,0.000621373,2,FALSE,$mile$',"length - imperial, mile",m
-in2,inch squared,imperial,simple,1550.0031,3,FALSE,$in^2$',"area - imperial, inches squared",m2
-ft2,foot squared,imperial,simple,10.76391505,4,FALSE,$ft^2$',"area - imperial, inches squared",m2
+﻿unit,uname,c_ratio,c_logbase,c_offset,isCore,latex_string,dimension,core
+in,inch,39.370,0,0,FALSE,$in$',length,m
+ft,foot,3.280839895,0,0,FALSE,$ft$',length,m
+mile,foot,0.000621373,0,0,FALSE,$mile$',length,m
+in2,inch squared,1550.0031,0,0,FALSE,$in^2$',area,m2
+ft2,foot squared,10.76391505,0,0,FALSE,$ft^2$',area,m2
