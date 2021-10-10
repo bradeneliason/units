@@ -53,7 +53,8 @@ define
         owns c_ratio,
         owns dimension_type,
         plays core_converstion:core,
-        plays core_converstion:scaled;
+        plays core_converstion:scaled
+        abstract;
 
     log_unit sub unit,
         owns c_logbase;

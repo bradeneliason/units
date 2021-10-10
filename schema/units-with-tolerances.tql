@@ -14,7 +14,7 @@ define
     dim_r sub attribute, value long;    # base unit: rad, for radian angles
     # Add in application specific dimensions
 
-    dimension sub attribute, value string,
+    dimension_type sub attribute, value string,
         owns dim_t,
         owns dim_l,
         owns dim_m,
@@ -44,7 +44,7 @@ define
         owns isCore
         owns latex_string,
         owns c_ratio,
-        owns dimension,
+        owns dimension_type,
         plays core_converstion:core,
         plays core_converstion:scaled;
 
@@ -82,5 +82,6 @@ define
         owns unit, # Note qkinds not imported
         # owns conditions, conditions of measurement could be implemented by application
         owns tolerance;
+        
 
     
