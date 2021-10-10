@@ -128,7 +128,7 @@ define
     # geo_unit sub unit, ...
 
     ## Relations ---------------------------------------------------------------
-    core_converstion sub relation,
+    core_conversion sub relation,
         relates core,
         relates scaled;
    
