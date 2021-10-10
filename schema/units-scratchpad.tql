@@ -181,8 +181,8 @@ define
     rule convert-measure-3:
         when {
             $m isa measure, has units $u;
-            $dim (source: $u, core: $b) isa dimension;
-            $convert (source: $m) isa convert, has unit $b;
+            $dim (source: $u, core: $c) isa dimension;
+            $convert (source: $m) isa convert, has unit $c;
             $u has ctype "simple";
             $u has c_first $cf;
             $quant = $m * $cf;
