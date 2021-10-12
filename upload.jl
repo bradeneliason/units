@@ -34,59 +34,57 @@ end
 precision(x) = ceil(Int, -log10(x))
 
 function format_unit_insert(u)
+    # TODO: handle missing data no matter where it is
     if ismissing(u.prefix)
         prefix = ""
     else
         prefix = u.prefix
     end
 
+    # Bodge to fix number formatting
     c_ratio = u.c_ratio
     if u.c_ratio <= 0.0001
         c_ratio = format(u.c_ratio, precision=precision(u.c_ratio))
     end
 
-    # Subtype unit to affine unit it it has a non-zero logbase
-    if u.c_logbase != 0
-        return """
-        insert \$base isa log_unit; \$base "$(u.unit)"; 
-        \$base has uname "$(u.uname)",  
-        has c_ratio $(c_ratio),
-        has c_logbase $(u.c_logbase),
-        has prefix "$(prefix)", 
-        has isCore $(u.isCore),
-        has latex_string "$(u.latex_string)",
-        has dimension_type "$(u.dimension_type)";
-        """
-    end
-
-    # Subtype unit to affine unit it it has a non-zero offset
-    if u.c_offset != 0
-        return """
-        insert \$base isa affine_unit; \$base "$(u.unit)"; 
-        \$base has uname "$(u.uname)",  
-        has c_ratio $(c_ratio),
-        has c_offset $(u.c_offset),
-        has prefix "$(prefix)", 
-        has isCore $(u.isCore),
-        has latex_string "$(u.latex_string)",
-        has dimension_type "$(u.dimension_type)";
-        """
-    end
-
-    """
-    insert \$base isa unit; \$base "$(u.unit)"; 
+    query = """
     \$base has uname "$(u.uname)",  
     has c_ratio $(c_ratio), 
     has prefix "$(prefix)", 
     has isCore $(u.isCore),
     has latex_string "$(u.latex_string)",
-    has dimension_type "$(u.dimension_type)";
-    """
+    has dimension_type "$(u.dimension_type)" """
+    
+    # Subtype unit to affine unit it it has a non-zero logbase
+    if u.c_logbase != 0
+        query *= ",\nhas c_logbase $(u.c_logbase);"
+        return """insert \$base isa log_unit; \$base "$(u.unit)";""" * query
+    end
+
+    # Subtype unit to affine unit it it has a non-zero offset
+    if u.c_offset != 0
+        query *= ",\nhas c_offset $(u.c_offset);"
+        return """insert \$base isa affine_unit; \$base "$(u.unit)";""" * query
+    end
+
+    # A normal unit (not log or affine)
+    return """insert \$base isa unit; \$base "$(u.unit)";""" * query * ";"
 end
+
+
 function format_example_insert(e)
     """
     insert \$measure isa measure; \$measure $(e.measure); 
     \$measure has unit "$(e.unit)";
+    """
+end
+
+function format_corescalerelation_insert(r)
+    """
+    match
+        \$unit isa unit; \$unit "$(r.unit)";
+        \$core  isa unit; \$core "$(r.core)"; \$core has isCore true;
+    insert \$core_conversion (core: \$core, scaled: \$unit) isa core_conversion;
     """
 end
 
@@ -124,18 +122,24 @@ dbconnect("127.0.0.1", 1729) do client
     end
 end
 
-println("Complete")
+@info "Complete"
+
+## Insert relations
+dbconnect("127.0.0.1", 1729) do client
+    # Open the session
+    open(client, "units") do session
+        insert_data(session, scaldata, format_corescalerelation_insert)
+    end
+end
+@info "Complete"
+
 
 ## Printing Queries for Debugging
-
 dimsdata .|> format_dims_insert .|> println;
-
 prefdata .|> format_prefix_insert .|> println;
-
 coredata .|> format_unit_insert .|> println;
 scaldata .|> format_unit_insert .|> println;
-
 expldata .|> format_example_insert .|> println;
 
-
+scaldata .|> format_corescalerelation_insert .|> println;
 
