@@ -8,7 +8,7 @@ from csv import DictReader
 class TypeQL_Data_Slice:
     def __init__(self, data):
         self.data = data
-        self.dimensions = ['dim-t', 'dim-l', 'dim-m', 'dim-i', 'dim-k', 'dim-n', 'dim-j', 'dim-r', 'dim-c']
+        # self.dimensions = ['dim-t', 'dim-l', 'dim-m', 'dim-i', 'dim-k', 'dim-n', 'dim-j', 'dim-r', 'dim-c']
         self.units = ['s', 'm', 'kg', 'A', 'k', 'mol', 'cd', 'rad', 'kg/kg' ]
 
     def core(self):
@@ -37,14 +37,14 @@ class TypeQL_Data_Slice:
             statement += ', core: $core '
 
         statement += ') isa unit_details, has unit "' + self.data["unit"] + '",'
-        statement += 'has uname "' + self.data["uname"] + '",'
-        statement += 'has utype "' + self.data["utype"] + '",'
-        statement += 'has ctype "' + self.data["ctype"] + '",'
-        statement += 'has c_first ' + self.data["c_first"] + ','
-        statement += 'has c_second ' + self.data["c_second"] + ','
-        statement += 'has isCore ' + self.data["isCore"].lower() + ','
-        statement += 'has latex_string "' + self.data["latex_string"] + '",'
-        statement += 'has description "' + self.data["description"] + '";'   
+        statement += 'uname "' + self.data["uname"] + '",'
+        statement += 'utype "' + self.data["utype"] + '",'
+        statement += 'ctype "' + self.data["ctype"] + '",'
+        statement += 'c_first ' + self.data["c_first"] + ','
+        statement += 'c_second ' + self.data["c_second"] + ','
+        statement += 'isCore ' + self.data["isCore"].lower() + ','
+        statement += 'latex_string "' + self.data["latex_string"] + '",'
+        statement += 'description "' + self.data["description"] + '";'   
         logger.debug(f'inserted the unit -> {self.data["unit"]}')                    
         return statement
 
@@ -67,10 +67,17 @@ class TypeQL_Data_Slice:
         return statement
 
 
-    def dimension (self):
-        statement = 'insert $dim isa ' + self.data["dim"] + '; '
-        statement += '$dim ' + self.data["value"] + '; '
-        statement += '$dim has unit "' + self.data["unit"] + '"; '
+    def dimensions (self):
+        statement = 'insert $dim isa dimension_type; $dim "' + self.data["dimension_type"] + '"; '
+        statement += '$dim has dim_t ' + self.data["dim-t"] + ', '
+        statement += 'has dim_l ' + self.data["dim-l"] + ', '
+        statement += 'has dim_m ' + self.data["dim-m"] + ', '
+        statement += 'has dim_i ' + self.data["dim-i"] + ', '
+        statement += 'has dim_k ' + self.data["dim-k"] + ', '
+        statement += 'has dim_j ' + self.data["dim-j"] + ', '
+        statement += 'has dim_r ' + self.data["dim-r"] + '; '
+        # statement += '$dim ' + self.data["value"] + '; '
+        # statement += '$dim has unit "' + self.data["unit"] + '"; '
         return statement
 
         
@@ -102,9 +109,10 @@ def upload(tql_obj_name, csv_dict_reader, session):
         new_slice = TypeQL_Data_Slice(data_slice)
         query_slice = getattr(new_slice, tql_obj_name)()
         # write the statement into TypeDB        
-        with session.transaction(TransactionType.WRITE) as write_transaction:
+        print(query_slice)
+        # with session.transaction(TransactionType.WRITE) as write_transaction:
             insert_iterator = write_transaction.query().insert(query_slice)
-            # logger.debug(f'-------------- Start Insert Slice of {tql_obj_name} , {count} of {total} ---------------------')
+            # logger.debug(f'-------------- Start Insert Slice of {tql write_transaction.query().insert(query_slice)_obj_name} , {count} of {total} ---------------------')
             # logger.debug(f'Query Slice in Statement - {query_slice}')
             """ for concept_map in insert_iterator:
                     concepts = concept_map.concepts()
@@ -126,7 +134,7 @@ def upload(tql_obj_name, csv_dict_reader, session):
                     
             # logger.debug("------ End Insert  Slice Statement---------------------------------")
             # logger.debug(f' statement is -> {query_slice}')
-            write_transaction.commit()
+            # write_transaction.commit()
 
 
     
@@ -149,12 +157,12 @@ def import_file(iterator, total, path_to_csv, name_list, session):
     :rtype: void
     """
     for count, obj_type in enumerate(name_list):
-                number = str(iterator + count + 1)
-                filename = path_to_csv + obj_type + '.csv'
-                with open(filename) as f:
-                    csv_dict_reader = DictReader(f)
-                    logger.debug(f'---------- Import {number} of {total} CSV files ------------- {filename} -------------------')
-                    upload(obj_type, csv_dict_reader, session)
+        number = str(iterator + count + 1)
+        filename = path_to_csv + obj_type + '.csv'
+        with open(filename) as f:
+            csv_dict_reader = DictReader(f)
+            # logger.debug(f'---------- Import {number} of {total} CSV files ------------- {filename} -------------------')
+            upload(obj_type, csv_dict_reader, session)
 
 
 def import_files(server, path_to_csv, initial, primary,secondary):
@@ -191,15 +199,31 @@ if __name__ == '__main__':
     server = {
         "url": "localhost",
         "port": "1729",
-        "database": "units"
+        "database": "units2"
     }
     path_to_csv = './data/'
-    initial = ["dimension"]
+    initial = ["dimensions"]
     primary = ['base','core','not_core']
-    secondary = ['scaled', 'imperial', 'examples']    
+    secondary = ['scaled', 'imperial', 'examples']
+    
     
     # load all of the files in the director
     logger.debug("=================== Start DB Import ===========================")
     import_files(server, path_to_csv, initial, primary, secondary)
     logger.debug("=================== End DB Import ===========================")
-    
+
+
+typedb_connection = server["url"] + ":" + server["port"]
+with TypeDB.core_client(typedb_connection) as client:
+    with client.session(server["database"], SessionType.DATA) as session:
+        import_file(0, 1, path_to_csv, ["dimensions"], session)
+
+# import_files(server, path_to_csv, initial, primary, secondary)
+
+# new_slice = TypeQL_Data_Slice(data_slice)
+with TypeDB.core_client(typedb_connection) as client:
+    with client.session(server["database"], SessionType.DATA) as session:
+        with session.transaction(TransactionType.WRITE) as write_transaction:
+            print(write_transaction);
+            # write_transaction.query('insert $dim isa dimension_type; $dim "dynamic viscosity"; $dim has dim_t -1, has dim_l -1, has dim_m 1, has dim_i 0, has dim_k 0, has dim_j 0, has dim_r 0;')
+            # write_transaction.commit()

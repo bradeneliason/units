@@ -35,8 +35,8 @@ define
     c_offset sub attribute, value double;
 
     # Units
-    prefix_name sub attribute string;
-    power_ten sub attribute long;
+    prefix_name sub attribute, value string;
+    power_ten sub attribute, value long;
     prefix sub attribute, value string,
         owns prefix_name,
         owns power_ten;
@@ -45,21 +45,23 @@ define
     isCore sub attribute, value boolean; # boolean of is unit a core?
     latex_string sub attribute, value string;   # latex string of unit
 
-    unit sub attribute, value string,
+    abstact_unit sub attribute, value string,
+        abstract,
         owns uname,
         owns prefix,
         owns isCore,
         owns latex_string,
         owns c_ratio,
         owns dimension_type,
-        plays core_converstion:core,
-        plays core_converstion:scaled
-        abstract;
+        plays core_conversion:core,
+        plays core_conversion:scaled;
 
-    log_unit sub unit,
+    unit sub abstact_unit;
+
+    log_unit sub abstact_unit,
         owns c_logbase;
 
-    affine_unit sub unit,
+    affine_unit sub abstact_unit,
         owns c_offset;
 
     # Other types of sub-units
